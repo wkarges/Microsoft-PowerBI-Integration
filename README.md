@@ -34,4 +34,9 @@ In order to make requests to the Power BI APIS, you'll need the required OAuth A
 |:-------------:|:-----------------------------------------:|
 | client_id | `<yourclientid>` |
 | grant_type | password |
-|resource | https://analysis.windows.net/powerbi/api |
+| resource | https://analysis.windows.net/powerbi/api |
+| username | `<yourusername>` |
+| password | `<yourpassword>` |
+| scope | openid |
+
+![GetAccessToken.png](assets/GetAccessToken.png)
