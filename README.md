@@ -26,12 +26,14 @@ Within App registrations, select your app, view API permissions, and make sure y
 
 If you haven't already, make sure you download and install [Postman](https://www.postman.com/downloads/)
 
+To get a head start, you can import my [Postman Collection](https://www.getpostman.com/collections/8491549621eab53f65aa) and utilize the necessary calls with minimal configuration.
+
 ### Acquiring your Access & Refresh Tokens
 
 In order to make requests to the Power BI APIS, you'll need the required OAuth Access token (and refresh token if you're making periodic requests).  Open up Postman and create a new `POST` request for this URL: [https://login.microsoftonline.com/common/oauth2/token](https://login.microsoftonline.com/common/oauth2/token).  In the body of your `POST` request set the type to `form-data` and enter the following fields:
 
 | Key           | Value         |
-|:-------------:|:-----------------------------------------:|
+|:-------------:|:-----------------------------------------|
 | client_id | `<yourclientid>` |
 | grant_type | password |
 | resource | https://analysis.windows.net/powerbi/api |
@@ -40,3 +42,4 @@ In order to make requests to the Power BI APIS, you'll need the required OAuth A
 | scope | openid |
 
 ![GetAccessToken.png](assets/GetAccessToken.png)
+
