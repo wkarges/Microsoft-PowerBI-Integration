@@ -41,5 +41,7 @@ In order to make requests to the Power BI APIS, you'll need the required OAuth A
 | password | `<yourpassword>` |
 | scope | openid |
 
-![GetAccessToken.png](assets/GetAccessToken.png)
+With the fields correctly entered you should recieve your `Access Token` and `Refresh Token` in the response.  You'll need to copy these down and save them for later.
+
+![AccessTokenResponse.png](assets/AccessTokenResponse.png)
 
