@@ -12,7 +12,7 @@ You'll need to have (or work with someone who has) admin privileges to AzureAD/M
 
 In order to start utilizing PowerBI's REST API's you'll first need to [Register you application](https://dev.powerbi.com/Apps) with Azure AD.  For this tutorial we'll be registering a Native app, so all you'll need for now is the app name and designated permissions.  Within the [PowerBI REST API Documentation](https://docs.microsoft.com/en-us/rest/api/power-bi/) you can find the required permissions for each API--or you can just select all permissions to make it easier.
 
-![RegisterApplication.png](assets/RegisterApplication.png)
+![RegisterApplication.png](images/RegisterApplication.png)
 
 If your App registers successfully, you should recieve an `App Id`, copy this down in a safe place as you'll need it later.  If you're having issues registering the app--you'll likely need to contact your Azure Admin.
 
@@ -20,11 +20,11 @@ If your App registers successfully, you should recieve an `App Id`, copy this do
 
 With your App registered, you'll need to make sure your user account(s) have permissions to make requests through your app.  Navigate to and login to your [Azure Portal](https://portal.azure.com/) then navigate into Azure Active Directory.  In the left navigation bar of Azure, select `App registrations`.
 
-![AzureApps.png](assets/AzureApps.png)
+![AzureApps.png](images/AzureApps.png)
 
 Within App registrations, select your app, view API permissions, and make sure your designated user account(s) have granted access for each of your API permissions.  Again, you can also easily grant admin consent for your whole domain.
 
-![AzureAppPermissions.png](assets/AzureAppPermissions.png)
+![AzureAppPermissions.png](images/AzureAppPermissions.png)
 
 ## Building the Integration
 
@@ -49,7 +49,7 @@ In order to make requests to the Power BI APIS, you'll need the required OAuth A
 
 With the fields correctly entered you should recieve your `Access Token` and `Refresh Token` in the response.  You'll need to copy these down and save them for later.
 
-![AccessTokenResponse.png](assets/AccessTokenResponse.png)
+![AccessTokenResponse.png](images/AccessTokenResponse.png)
 
 The most common error you recieve in the response is due to insufficient account permissions.  I've only been able to get this call to work with maximum permissions attached to the account making the call.  If you're having issues you may need to do some research in the [Power BI authorization and/or API documentation](https://docs.microsoft.com/en-us/power-bi/).
 
@@ -65,21 +65,28 @@ First you'll need to obtain your `groupId` through the Get Groups API.  In Postm
 
 Submit the request and your `groupId(s)` should appear in the response.  Make sure your selected group contains the report you're wanting to display.
 
-![GetGroups.png](assets/GetGroups.png)
+![GetGroups.png](images/GetGroups.png)
 
 Create a new `GET` request with the Get Report Details URL, `https://api.powerbi.com/v1.0/myorg/groups/{{groupId}}/reports`.  If you're using the [Postman Collection](https://www.getpostman.com/collections/8491549621eab53f65aa) you can update the `groupId` variable or simply replace the parameter in the URL.
 
 In addition to updating the `groupId` don't forget to add your Bearer Token Authorization.  Submit the request to obtain your `reportId` and `embedUrl`, both of which will be needed later.
 
-![GetReportDetails.png](assets/GetReportDetails.png)
+![GetReportDetails.png](images/GetReportDetails.png)
 
 #### Generate Embed Token
 
 Create a new `POST` request with the Generate Embed Token URL `https://api.powerbi.com/v1.0/myorg/groups/{{groupId}}/reports/{{reportId}}/GenerateToken`, update the parameters `groupId` and `reportId` parameters, and update the `Bearer Token` Authorization.  Finally, copy the following JSON script to the body of the request:
 
-```JSON
+```json
 {
   "accessLevel": "View",
   "allowSaveAs": "false"
 }
 ```
+
+With all of that configured you can submit the request to obtain your Embed Token.
+
+![GenerateEmbedToken.png](images/GenerateEmbedToken.png)
+
+
+
