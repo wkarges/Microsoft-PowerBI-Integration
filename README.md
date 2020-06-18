@@ -88,5 +88,16 @@ With all of that configured you can submit the request to obtain your Embed Toke
 
 ![GenerateEmbedToken.png](images/GenerateEmbedToken.png)
 
+## Implementing
+
+Unfortunately we currently have no way of automating the Generate Embed Token and applying it to HTML.  I am exploring either a custom IF adapter (if there's enough client demand) or possibly external scripting but that would be difficult for our teams to support.  Will update this Doc depending on which route we go.
+
+For now we do have the ability to temporarily bring a report into our CM for testing purposes.  You'll need to download the [sample HTML](assets/ExampleReport.html) and open it in a text editor.  Then open the `txtAccessToken`, `txtEmbedUrl`, and `txtEmbedReportId` with your Embed Token, Embed URL, and reportId respectively.
+
+```html
+	var txtAccessToken = <yourEmbedToken>
+	var txtEmbedURL = <yourEmbedURL>
+	var txtEmbedReportId = <yourReportId>
+```
 
 
