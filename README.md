@@ -10,11 +10,11 @@ You'll need to have (or work with someone who has) admin privileges to AzureAD/M
 
 ### Registering your App
 
-In order to start utilizing PowerBI's REST API's you'll first need to [Register you application](https://dev.powerbi.com/Apps) with Azure AD.  For this tutorial we'll be registering a Native app, so all you'll need for now is the app name and designated permissions.  Within the [PowerBI REST API Documentation](https://docs.microsoft.com/en-us/rest/api/power-bi/) you can find the required permissions for each API--or you can just select all permissions to make it easier.
+In order to start utilizing PowerBI's REST API's you'll first need to [Register you application](https://dev.powerbi.com/Apps) with Azure AD.  For this tutorial we'll be registering a Native app, so all you'll need for now is the app name and designated permissions.  Within the [PowerBI REST API Documentation](https://docs.microsoft.com/en-us/rest/api/power-bi/) you can find the required permissions for each API―or you can just select all permissions to make it easier.
 
 ![RegisterApplication.png](images/RegisterApplication.png)
 
-If your App registers successfully, you should recieve an `App Id`, copy this down in a safe place as you'll need it later.  If you're having issues registering the app--you'll likely need to contact your Azure Admin.
+If your App registers successfully, you should recieve an `App Id`, copy this down in a safe place as you'll need it later.  If you're having issues registering the app―you'll likely need to contact your Azure Admin.
 
 ### App Permissions
 
@@ -108,4 +108,7 @@ You can also adjust the `iframe` dimensions if you wanted to resize the HTML for
 
 ![ExampleHTML.png](images/ExampleHTML.png)
 
+Save your HTML file and path to it from a Content Manager HTML Item.  Any browser type should work, I'm using Chromium - Performance in this example.
+
+![CMPreview.png](images/CMPreview.png)
 
