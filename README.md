@@ -34,9 +34,9 @@ To get a head start, you can import my [Postman Collection](https://www.getpostm
 
 ### Acquiring your Access & Refresh Tokens
 
-In order to make requests to the Power BI APIS, you'll need the required OAuth Access token (and refresh token if you're making periodic requests).  Open up Postman and create a new `POST` request for this URL: [https://login.microsoftonline.com/common/oauth2/token](https://login.microsoftonline.com/common/oauth2/token).  In the body of your `POST` request set the type to `form-data` and enter the following fields:
+In order to make requests to the Power BI APIS, you'll need the required OAuth Access token (and refresh token if you're making periodic requests).  Open up Postman and create a new `POST` request for this URL: `https://login.microsoftonline.com/common/oauth2/token`.  In the body of your `POST` request set the type to `form-data` and enter the following fields:
 
-*Note, FWI Employees should be able to obtain test credentials [here](https://fourwindsinteractivehq-my.sharepoint.com/:t:/g/personal/will_karges_fourwindsinteractive_com/EX5AWcQRn8lKhXrRjUjGXYkBxrIL7W5TOG2F3Ub8WwxxwQ?e=MbW3kr).*
+*Note: FWI Employees should be able to obtain test credentials [here](https://fourwindsinteractivehq-my.sharepoint.com/:t:/g/personal/will_karges_fourwindsinteractive_com/EX5AWcQRn8lKhXrRjUjGXYkBxrIL7W5TOG2F3Ub8WwxxwQ?e=MbW3kr).*
 
 | Key           | Value         |
 |:-------------:|:-----------------------------------------|
@@ -57,4 +57,29 @@ The most common error you recieve in the response is due to insufficient account
 
 With your Access Token acquired you should be able to apply it as a Bearer Token and utilize any and all of the PowerBI REST APIs.  For this tutorial we'll need to obtain an embed token so we can securely embed our PowerBI report into a Content Manager HTML content item.
 
+In order to do so we'll need to aquire the `groupId` and `reportId` parameters to append them to the Generate Embed Token URL.
 
+#### Getting necessary Parameters
+
+First you'll need to obtain your `groupId` through the Get Groups API.  In Postman create a new `GET` request with this URL, `https://api.powerbi.com/v1.0/myorg/groups`.  In the Authorization tab set the type to `Bearer Token` and copy/paste the `Access Token` from the previous section.  
+
+Submit the request and your `groupId(s)` should appear in the response.  Make sure your selected group contains the report you're wanting to display.
+
+![GetGroups.png](assets/GetGroups.png)
+
+Create a new `GET` request with the Get Report Details URL, `https://api.powerbi.com/v1.0/myorg/groups/{{groupId}}/reports`.  If you're using the [Postman Collection](https://www.getpostman.com/collections/8491549621eab53f65aa) you can update the `groupId` variable or simply replace the parameter in the URL.
+
+In addition to updating the `groupId` don't forget to add your Bearer Token Authorization.  Submit the request to obtain your `reportId` and `embedUrl`, both of which will be needed later.
+
+![GetReportDetails.png](assets/GetReportDetails.png)
+
+#### Generate Embed Token
+
+Create a new `POST` request with the Generate Embed Token URL `https://api.powerbi.com/v1.0/myorg/groups/{{groupId}}/reports/{{reportId}}/GenerateToken`, update the parameters `groupId` and `reportId` parameters, and update the `Bearer Token` Authorization.  Finally, copy the following JSON script to the body of the request:
+
+```JSON
+{
+  "accessLevel": "View",
+  "allowSaveAs": "false"
+}
+```
