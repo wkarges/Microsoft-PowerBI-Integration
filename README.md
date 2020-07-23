@@ -100,7 +100,7 @@ For now we do have the ability to temporarily bring a report into our CM for tes
 	var txtEmbedReportId = <yourReportId>
 ```
 
-You can also adjust the `iframe` dimensions if you wanted to resize the HTML for an L-bar sign or something like that. 
+You can also adjust the `iframe` dimensions if you wanted to fine tune the HTML clipping for an L-bar sign or something like that. 
 
 ```html
 	<iframe id="ifrTile" width="100%" height="100%"></iframe>
