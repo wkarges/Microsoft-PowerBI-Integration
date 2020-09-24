@@ -4,6 +4,8 @@
 
 This tutorial is intended for employees of Four Winds Interactive.  If you're unaffiliated with FWI and looking to develop with Power BI's REST APIs this tutorial is unlikely to be helpful.
 
+**UPDATE 9-24-2020** I've added additional instructions for creating a service account.  After you've registered your app and designated App permissions you can create a service account user in Azure ID who's credentials will be used for the GetAccessToken request.
+
 ## Getting Started
 
 You'll need to have (or work with someone who has) admin privileges to AzureAD/Microsoft 365.  If you're just testing, you can setup your own trial admin account through the [Microsoft developer program](https://developer.microsoft.com/en-us/microsoft-365/dev-program).
@@ -25,6 +27,22 @@ With your App registered, you'll need to make sure your user account(s) have per
 Within App registrations, select your app, view API permissions, and make sure your designated user account(s) have granted access for each of your API permissions.  Again, you can also easily grant admin consent for your whole domain.
 
 ![AzureAppPermissions.png](images/AzureAppPermissions.png)
+
+## **UPDATE** - Assigning Service Account to your App
+
+As you're about to see, we'll need user account from your Azure environment to obtain the Access & Refresh tokens required for the PowerBi APIs.  You likely don't want to use the credentials from one of your azure admins so this tutorial will guide you how to easily create and assign a service account.  *Note: This tutorial assumes you've already registered your PowerBI App and assigned the appropriate permissions.*
+
+Within the [Azure Portal](https://portal.azure.com) navigate to Azure Active Directory -> Users and, for the purposes of this tutorial, I recommend you create a new user.
+
+![newuser.png](images/serviceaccount/newuser.png)
+
+This user doesn't have to be associated with a real person, you can give the account a generic name--here I'm using `limitedscope@<mydomain>.com`.  Once your user is created you'll then need to assign that user the appropriate admin roles for your PowerBI app.  Specifically the user will need to be an `Application administrator` and `Cloud application administrator`.  You can assign roles within the user settings.
+
+![assignedroles.png](images/serviceaccount/assignedroles.png)
+
+With your service account created, you'll need to login to Azure with it to Authorize the account.  Then you can log back in to your admin account, navigate to App registrations -> YourPowerBI app, and finally access the Owners section.  Add your service account as an owner of the application.  With that done you should be able to setup the AccessToken request in the next tutorial using your service account credentials.
+
+![appowners.png](images/serviceaccount/appowners.png)
 
 ## Building the Integration
 
