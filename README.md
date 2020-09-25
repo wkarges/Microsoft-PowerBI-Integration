@@ -4,7 +4,7 @@
 
 This tutorial is intended for employees of Four Winds Interactive.  If you're unaffiliated with FWI and looking to develop with Power BI's REST APIs this tutorial is unlikely to be helpful.
 
-**UPDATE 9-24-2020** I've added additional instructions for creating a service account.  After you've registered your app and designated App permissions you can create a service account user in Azure ID who's credentials will be used for the GetAccessToken request.
+**UPDATE 9-24-2020** I've added additional instructions for creating a service account.  After you've registered your app and designated App permissions you can create a service account user in Azure ID who's credentials will be used for the AccessToken POST request.
 
 ## Getting Started
 
@@ -40,7 +40,7 @@ This user doesn't have to be associated with a real person, you can give the acc
 
 ![assignedroles.png](images/serviceaccount/assignedroles.png)
 
-With your service account created, you'll need to login to Azure with it to Authorize the account.  Then you can log back in to your admin account, navigate to App registrations -> YourPowerBI app, and finally access the Owners section.  Add your service account as an owner of the application.  With that done you should be able to setup the AccessToken request in the next tutorial using your service account credentials.
+With your service account created, you'll need to login to Azure with it to Authorize the account.  Then you can log back in to your admin account, navigate to App registrations -> YourPowerBI app, and finally access the Owners section.  Add your service account as an owner of the application.  With that done you should be able to setup the AccessToken POST request in the next tutorial using your service account credentials.
 
 ![appowners.png](images/serviceaccount/appowners.png)
 
