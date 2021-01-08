@@ -110,7 +110,7 @@ With all of that configured you can submit the request to obtain your Embed Toke
 
 Unfortunately we currently have no way of automating the Generate Embed Token and applying it to HTML.  I am exploring either a custom IF adapter (if there's enough client demand) or possibly external scripting but that would be difficult for our teams to support.  Will update this Doc depending on which route we go.
 
-**UPDATE** We have completed development on the PowerBI adapter.  All information can be found on [FWI Community](https://fourwindsinteractive.force.com/articles/User_Guide/Integration-Framework-PowerBI-Adapter-Content-Manager-Setup).
+**UPDATE:** We have completed development on the PowerBI adapter.  All information can be found on [FWI Community](https://fourwindsinteractive.force.com/articles/User_Guide/Integration-Framework-PowerBI-Adapter-Content-Manager-Setup).
 
 For now we do have the ability to temporarily bring a report into our CM for testing purposes.  You'll need to download the [sample HTML](assets/ExampleReport.html) and open it in a text editor.  Then update the `txtAccessToken`, `txtEmbedUrl`, and `txtEmbedReportId` with your Embed Token, Embed URL, and reportId respectively.
 
